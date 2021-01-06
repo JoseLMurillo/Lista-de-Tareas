@@ -11,8 +11,5 @@
     <!--COLORES AÑADIDOS-->
     <color name="AzulBottom">#0D88FA</color>
     <color name="AzulSucio">#0BB0DE</color>
-    <color name="AzulMario">#01F6EB</color>
-    <color name="VerdeAgua">#0BDE98</color>
-    <color name="Verde">#0DFA68</color>
     <color name="Eliminar">#cc0000</color>
 </resources>

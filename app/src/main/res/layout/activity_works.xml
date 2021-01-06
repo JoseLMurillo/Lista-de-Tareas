@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="#00FFFFFF"
-                android:onClick="Back"
+                android:onClick="BACK"
                 android:scaleX="2"
                 android:scaleY="2"
                 app:srcCompat="@drawable/abc_vector_test" />
@@ -87,6 +87,15 @@
                 android:textSize="24dp"
                 tools:text="Fecha de fin"/>
 
+            <TextView
+                android:id="@+id/tvHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                tools:text="Hora"/>
+
         </LinearLayout>
 
         <TextView
@@ -101,11 +110,30 @@
         <TextView
             android:id="@+id/tvDesc"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="10dp"
-            tools:text="Aqui va la descripcion de la tarea que hemos clickeado con anterioridad."
             android:textColor="#000000"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            tools:text="Aqui va la descripcion de la tarea que hemos clickeado con anterioridad." />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="IMPORTANCIA:"
+            android:textSize="24dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvImportancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            tools:text="Aqui va la importancia de la tarea que hemos clickeado con anterioridad." />
+        />
 
     </LinearLayout>
 
@@ -123,7 +151,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:clickable="true"
-            android:onClick="EditWork"
+            android:onClick="EDITWORK"
             android:scaleX="1"
             android:scaleY="1"
             app:backgroundTint="@color/AzulSucio"

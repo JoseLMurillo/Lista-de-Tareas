@@ -7,12 +7,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WorksActivity extends AppCompatActivity {
 
     //VARIABLES
-    TextView tvNombre, tvFecha, tvDesc;
+    TextView tvNombre, tvFecha, tvHora, tvDesc, tvImportancia;
     DataBaseWorks dataBaseWorks;
     String id;
 
@@ -27,42 +26,47 @@ public class WorksActivity extends AppCompatActivity {
         //RELACION PARTE GRAFICA
         tvNombre = findViewById(R.id.tvNombre);
         tvFecha = findViewById(R.id.tvFecha);
+        tvHora = findViewById(R.id.tvHora);
         tvDesc = findViewById(R.id.tvDesc);
+        tvImportancia = findViewById(R.id.tvImportancia);
 
         id = getIntent().getExtras().getString("ID_TAREA");
-        Toast.makeText(this, id, Toast.LENGTH_LONG).show();
 
-        ObtenDatosyMuestra();
+        OBTENDATOSYMUESTRA();
     }
 
     //METODO OBTENER DATOS DE UNA TAREA Y ENVIARLOS AL LADO GRAFICO
-    public void ObtenDatosyMuestra(){
+    public void OBTENDATOSYMUESTRA(){
         Cursor Datos = dataBaseWorks.GetWorkById(id);
 
         int id;
-        String name, date, desc;
+        String name, date, hora, desc, impor;
 
         while (Datos.moveToNext()){
             id = Datos.getInt(Datos.getColumnIndex("id_tarea"));
             name = Datos.getString(Datos.getColumnIndex("nombre"));
             date = Datos.getString(Datos.getColumnIndex("fecha"));
+            hora = Datos.getString(Datos.getColumnIndex("hora"));
             desc = Datos.getString(Datos.getColumnIndex("descripcion"));
+            impor = Datos.getString(Datos.getColumnIndex("importancia"));
 
             tvNombre.setText(name);
             tvFecha.setText(date);
+            tvHora.setText(hora);
             tvDesc.setText(desc);
+            tvImportancia.setText(impor);
         }
     }
 
     //METODO PARA EL FAB
-    public void EditWork(View view){
+    public void EDITWORK(View view){
         Intent intent = new Intent(this, EditWork.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }
 
     //METODO DE REGRESAR
-    public void Back(View view){
+    public void BACK(View view){
         onBackPressed();
     }
 }

@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="#00FFFFFF"
-                android:onClick="Back"
+                android:onClick="BACK"
                 android:scaleX="2"
                 android:scaleY="2"
                 app:srcCompat="@drawable/abc_vector_test" />
@@ -56,8 +56,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Formulario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="20"
         android:orientation="vertical">
 
@@ -66,96 +67,115 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Nombre de Tarea:"
+                android:text="Nombre:"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/etTarea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textSize="24dp"
-                tools:text="Nombre de la tarea" />
+                android:hint="Nombre de la tarea" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/Fecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Fecha de Fin de Tarea:"
-                android:textColor="#000000"
-                android:textSize="24sp" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etDia"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName"
                     android:padding="10dp"
-                    android:textSize="24dp"
-                    tools:text="Dia" />
+                    android:text="Fecha:"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/etMes"
+                    android:id="@+id/etFecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:focusableInTouchMode="false"
+                    android:onClick="DATEPICKERFECHAHORA"
                     android:padding="10dp"
                     android:textSize="24dp"
-                    tools:text="Mes" />
+                    android:hint="Dia" />
 
                 <EditText
-                    android:id="@+id/etAnio"
+                    android:id="@+id/etHora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
+
+                    android:focusableInTouchMode="false"
+                    android:onClick="DATEPICKERFECHAHORA"
                     android:padding="10dp"
                     android:textSize="24dp"
-                    tools:text="Año" />
+                    android:hint="Hora" />
+
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/Importancia"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Importancia:"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/SpImportancia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:entries="@array/planets_array"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="Descripcion de la Tarea:"
                 android:textColor="#000000"
                 android:textSize="24sp" />
@@ -164,19 +184,20 @@
                 android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="10dp"
+                android:gravity="top"
                 android:textSize="24dp"
-                tools:text="Descripcion de la tarea" />
+                android:hint="Descripcion de la tarea" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/Botones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_margin="5dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -185,31 +206,24 @@
             android:id="@+id/btnActualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn1"
-            android:onClick="Actualizar"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="40dp"
-            android:paddingBottom="20dp"
+            android:onClick="ACTUALIZAR"
             android:text="SAVE"
-            android:textSize="25dp" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn2"
-            android:onClick="Eliminar"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:paddingRight="40dp"
-            android:paddingBottom="20dp"
+            android:onClick="ELIMINAR"
             android:text="DELETE"
-            android:textSize="25dp" />
+            android:textSize="30dp" />
 
     </LinearLayout>
 

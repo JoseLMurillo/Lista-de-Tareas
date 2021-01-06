@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="#00FFFFFF"
-                android:onClick="Back"
+                android:onClick="BACK"
                 android:scaleX="2"
                 android:scaleY="2"
                 app:srcCompat="@drawable/abc_vector_test" />
@@ -82,7 +82,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:clickable="true"
-            android:onClick="NewActivity"
+            android:onClick="NEWORKACTIVITY"
             android:scaleX="1"
             android:scaleY="1"
             app:backgroundTint="@color/AzulSucio"

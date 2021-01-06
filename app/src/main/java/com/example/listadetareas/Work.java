@@ -3,15 +3,16 @@ package com.example.listadetareas;
 public class Work {
 
     private int idWork;
-    private String nombre,  fecha, desc;
+    private String nombre,  fecha, desc, impor;
 
     public Work(){}
 
-    public Work(int id, String nom, String fec, String des){
+    public Work(int id, String nom, String fec, String des, String imp){
         this.idWork = id;
         this.nombre = nom;
         this.fecha = fec;
         this.desc = des;
+        this.impor = imp;
     }
 
     public int getIdWork() {
@@ -44,5 +45,13 @@ public class Work {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getImpor() {
+        return impor;
+    }
+
+    public void setImpor(String impor) {
+        this.impor = impor;
     }
 }

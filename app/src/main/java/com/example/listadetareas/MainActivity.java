@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.listadetareas.Notificacion.AlarmaPrueba;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,5 +28,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewWorksActivity.class);
         startActivity(intent);
     }
+
+    //BOTON ALARMA PRUEBA
+    public void ALARMA(View view){
+        Intent intent = new Intent(this, Pomodoro.class);
+        startActivity(intent);
+    }
+
+
 
 }

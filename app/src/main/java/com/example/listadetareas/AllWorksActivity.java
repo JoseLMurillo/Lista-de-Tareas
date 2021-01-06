@@ -29,21 +29,22 @@ public class AllWorksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_works);
 
-//CASTEO
+        //CASTEO
         dataBaseWorks = new DataBaseWorks(this);
         nombre_Tareas = new ArrayList<String>();
         mapaTarea = new HashMap<String, Integer>();
         tareasBD = new ArrayList<Work>();
 
-        tareasBD = ObtenDatos();
+        tareasBD = OBTENDATOS();
 
         //LLAMADA A LOS METODOS DE LLENADO
-        LlenarArreglo();
-        LlenarMapa();
+        LLENARARREGLO();
+        LLENARMAPA();
 
         //CASTEO
         ListWorks = findViewById(R.id.ListWorks);
 
+        //CUANDO SE TOCA UN ITEM DE LA LISTA
         ListWorks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -61,36 +62,37 @@ public class AllWorksActivity extends AppCompatActivity {
 
     }
 
-    //METODO PARA OBTER LOS DATOS DE LA BD
-    public ArrayList<Work> ObtenDatos(){
+    //OBTIENE LOS DATOS DE LA BD
+    public ArrayList<Work> OBTENDATOS(){
         Cursor Datos = dataBaseWorks.GetTareas();
         ArrayList<Work> tareas = new ArrayList<Work>();
 
+        //VARIABLES
         int id;
-        String name, date, desc;
+        String name, date, desc, impor;
 
         while (Datos.moveToNext()){
             id = Datos.getInt(Datos.getColumnIndex("id_tarea"));
             name = Datos.getString(Datos.getColumnIndex("nombre"));
             date = Datos.getString(Datos.getColumnIndex("fecha"));
             desc = Datos.getString(Datos.getColumnIndex("descripcion"));
+            impor = Datos.getString(Datos.getColumnIndex("importancia"));
 
-            Work work = new Work(id, name, date, desc);
-
+            Work work = new Work(id, name, date, desc, impor);
             tareas.add(work);
         }
         return tareas;
     }
 
     //LLENA UN ARREGLO PARA
-    public void LlenarArreglo(){
+    public void LLENARARREGLO(){
         for(int i=0; i<tareasBD.size(); i++){
             nombre_Tareas.add(tareasBD.get(i).getNombre());
         }
     }
 
     //LLENA UN MAPA CON EL NOMBRE DE LA TAREA Y SU ID PARA ENVIARLO A WORKS ACTIVITY
-    public void LlenarMapa(){
+    public void LLENARMAPA(){
         String llave;
         int valor;
 
@@ -101,15 +103,15 @@ public class AllWorksActivity extends AppCompatActivity {
         }
     }
 
-    //METODO DE NUEVA ACTIVIDAD
-    public void NewActivity(View view){
+    //PARA LA ACTIVIDAD NUEVA TAREA
+    public void NEWORKACTIVITY(View view){
         Intent intent = new Intent(this, NewWorksActivity.class);
         startActivity(intent);
         finish();
     }
 
-    //METODO DE REGRESAR
-    public void Back(View view){
+    //REGRESAR
+    public void BACK(View view){
         onBackPressed();
     }
 }

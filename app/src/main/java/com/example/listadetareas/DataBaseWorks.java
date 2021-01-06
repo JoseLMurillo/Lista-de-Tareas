@@ -23,7 +23,33 @@ public class DataBaseWorks extends SQLiteOpenHelper {
                 "id_tarea INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "nombre VARCHAR NOT NULL, "+
                 "fecha VARCHAR NOT NULL, "+
-                "descripcion VARCHAR NOT NULL);");
+                "hora VARCHAR NOT NULL, "+
+                "descripcion VARCHAR NOT NULL, " +
+                "importancia VARCHAR NOT NULL);");
+
+        /*db.execSQL("CREATE TABLE Realizadas ("+
+                "id_tarea INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "nombre VARCHAR NOT NULL, "+
+                "fecha VARCHAR NOT NULL, "+
+                "hora VARCHAR NOT NULL, "+
+                "descripcion VARCHAR NOT NULL, " +
+                "importancia VARCHAR NOT NULL);");
+
+        db.execSQL("CREATE TABLE Pendientes ("+
+                "id_tarea INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "nombre VARCHAR NOT NULL, "+
+                "fecha VARCHAR NOT NULL, "+
+                "hora VARCHAR NOT NULL, "+
+                "descripcion VARCHAR NOT NULL, " +
+                "importancia VARCHAR NOT NULL);");
+
+        db.execSQL("CREATE TABLE Todos ("+
+                "id_tarea INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "nombre VARCHAR NOT NULL, "+
+                "fecha VARCHAR NOT NULL, "+
+                "hora VARCHAR NOT NULL, "+
+                "descripcion VARCHAR NOT NULL, " +
+                "importancia VARCHAR NOT NULL);");*/
     }
 
     @Override
@@ -33,13 +59,13 @@ public class DataBaseWorks extends SQLiteOpenHelper {
     }
 
     //METODO PARA GUARDAR LOS DATOS
-    public void GuardarDatos(String Work, String date, String desc ){
-        getReadableDatabase().execSQL("INSERT INTO Tarea VALUES ("+null+",'"+Work+"','"+date+"','"+desc+"');");
+    public void GuardarDatos(String Work, String date, String hora, String desc, String impor){
+        getReadableDatabase().execSQL("INSERT INTO Tarea VALUES ("+null+",'"+Work+"','"+date+"','"+hora+"','"+desc+"','"+impor+"');");
     }
 
     //METODO PARA ACTUALIZAR LOS DATOS
-    public void UpdateWork(String id, String nombre, String fecha, String descripcion){
-        getReadableDatabase().execSQL("UPDATE Tarea SET nombre = '"+nombre+"', fecha = '"+fecha+"', descripcion = '"+descripcion+"' WHERE id_tarea = "+id+";");
+    public void UpdateWork(String id, String nombre, String fecha, String hora, String descripcion, String importancia){
+        getReadableDatabase().execSQL("UPDATE Tarea SET nombre = '"+nombre+"', fecha = '"+fecha+"', hora = '"+hora+"', descripcion = '"+descripcion+"', importancia = '"+importancia+"' WHERE id_tarea = "+id+";");
     }
 
     //METODO PARA ELIMIRA UN DATO

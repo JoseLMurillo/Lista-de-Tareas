@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Pomodoro">
+
+    <LinearLayout
+        android:id="@+id/ToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/AzulBottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#00FFFFFF"
+                android:onClick="BACK"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:srcCompat="@drawable/abc_vector_test" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Mi Pomodoro"
+                android:textColor="#FFFFFF"
+                android:textSize="35dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvPomodoro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/AzulSucio"
+                android:gravity="center"
+                android:onClick="CANCELAR"
+                android:padding="10dp"
+                android:text="POMODORO"
+                android:textColor="#FFFFFF"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/Contandor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCrono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textSize="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Textos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etTrabajo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:editable="true"
+                    android:ems="10"
+                    android:hint="Trabajo"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/etDescanso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:editable="true"
+                    android:ems="10"
+                    android:hint="Descanso"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/etCiclos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:editable="true"
+                    android:ems="10"
+                    android:hint="# Ciclos"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Botones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn1"
+                    android:onClick="INICIACUENTA"
+                    android:text="Iniciar" />
+
+                <Button
+                    android:id="@+id/btnFinalizar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn1"
+                    android:onClick="CANCELAR"
+                    android:text="Finalizar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -53,9 +53,10 @@
             android:background="@drawable/btn1"
             android:gravity="center"
             android:onClick="AllWorks"
+            android:padding="5dp"
             android:text="Todas Mis Tareas"
             android:textColor="#FFFFFF"
-            android:textSize="35dp" />
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -72,7 +73,27 @@
             android:background="@drawable/btn1"
             android:gravity="center"
             android:onClick="NewWork"
-            android:text="Nueva Actividad"
+            android:padding="5dp"
+            android:text="Nueva Tarea"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnAlarma"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="60dp"
+            android:background="@drawable/btn1"
+            android:gravity="center"
+            android:onClick="ALARMA"
+            android:text="POMODORO"
             android:textColor="#FFFFFF"
             android:textSize="35dp" />
     </LinearLayout>
