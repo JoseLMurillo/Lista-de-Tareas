@@ -36,10 +36,14 @@
             android:name=".Notificacion.AlarmReceiver"
             android:enabled="true" />
 
+        <service android:name=".Notificacion.TareasNotificacion"/>
+
         <service
             android:name=".Notificacion.NotificationService"
             android:enabled="true" /> <!-- MAKE ALARMS RESTART ON REBOOT -->
         <service android:name=".Notificacion.RebootServiceClass" />
+
+
 
         <receiver android:name=".Notificacion.MyRebootReceiver">
             <intent-filter>

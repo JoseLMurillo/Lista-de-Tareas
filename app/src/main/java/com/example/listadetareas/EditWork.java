@@ -135,18 +135,19 @@ public class EditWork extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                 //DIA Y MES CON CERO
-                if (dayOfMonth < 9 && month < 9) {
+                if (dayOfMonth <= 9 && month <= 9) {
                     etFecha.setText("0" + dayOfMonth + "/0" + month + "/" + year);
                 }
-                if (dayOfMonth < 9 && month > 9) {
+                if (dayOfMonth <= 9 && month > 9) {
                     etFecha.setText("0" + dayOfMonth + "/" + month + "/" + year);
                 }
-                if (dayOfMonth > 9 && month < 9) {
+                if (dayOfMonth > 9 && month <= 9) {
                     etFecha.setText(dayOfMonth + "/0" + month + "/" + year);
                 }
                 if (dayOfMonth > 9 && month > 9) {

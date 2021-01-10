@@ -239,6 +239,9 @@ public class Pomodoro extends AppCompatActivity {
 
     //METODO DE REGRESAR
     public void BACK(View view){
+        FINALIZADOV();
+        CronoActivo = true;
+        FinalizarClick = false;
         onBackPressed();
     }
 

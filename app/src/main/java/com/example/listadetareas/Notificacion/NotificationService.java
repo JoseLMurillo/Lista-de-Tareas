@@ -13,11 +13,13 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
 import com.example.listadetareas.MainActivity;
 import com.example.listadetareas.R;
+import com.example.listadetareas.Work;
 
 public class NotificationService extends IntentService {
 
@@ -38,6 +40,7 @@ public class NotificationService extends IntentService {
     @TargetApi(Build.VERSION_CODES.O)
     @Override
     protected void onHandleIntent(Intent intent2) {
+
         String NOTIFICATION_CHANNEL_ID = getApplicationContext().getString(R.string.app_name);
         Context context = this.getApplicationContext();
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -45,7 +48,10 @@ public class NotificationService extends IntentService {
         Resources res = this.getResources();
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 
-        String message = getString(R.string.new_notification);
+        String message = getString(R.string.new_notification);    //MENSAJE
+
+        //nt IDA = Integer.parseInt(intent2.getStringExtra("Identidad"));
+        String Nombre = intent2.getStringExtra("Nombre");     //debo de crear algo como work donde se almacenen esos datos y enviarlos pero, no se
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final int NOTIFY_ID = 0; // ID of notification
@@ -70,7 +76,9 @@ public class NotificationService extends IntentService {
             pendingIntent = PendingIntent.getActivity(context, 0, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentTitle(getString(R.string.app_name)).setCategory(Notification.CATEGORY_SERVICE)
                     .setSmallIcon(R.drawable.ic_notification)   // required
-                    .setContentText(message)
+
+                    .setContentText(Nombre)
+
                     .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.ic_notification))
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setAutoCancel(true)
@@ -94,6 +102,8 @@ public class NotificationService extends IntentService {
                     .setContentTitle(getString(R.string.app_name)).setCategory(Notification.CATEGORY_SERVICE)
                     .setContentText(message).build();
             notificationManager.notify(NOTIFICATION_ID, notification);
+
+            //NOTIFICATION_ID
         }
     }
 }

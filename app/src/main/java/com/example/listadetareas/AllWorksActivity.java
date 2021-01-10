@@ -9,8 +9,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.listadetareas.Notificacion.AlarmaPrueba;
+import com.example.listadetareas.Notificacion.Utils;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +26,12 @@ public class AllWorksActivity extends AppCompatActivity {
     //VARIABLES
     ListView ListWorks;
     ArrayAdapter<String> adapter;
-    ArrayList<String> nombre_Tareas;
+    ArrayList<String> nombre_Tareas, fecha_Tareas;
     DataBaseWorks dataBaseWorks;
     ArrayList<Work> tareasBD;
-    Map<String, Integer> mapaTarea;
+    Map<String, Integer> mapaTarea, mapaTarea2;
+    Map<Integer, String>mapaHora;
+    Calendar hoy = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +41,11 @@ public class AllWorksActivity extends AppCompatActivity {
         //CASTEO
         dataBaseWorks = new DataBaseWorks(this);
         nombre_Tareas = new ArrayList<String>();
+        fecha_Tareas = new ArrayList<String>();
         mapaTarea = new HashMap<String, Integer>();
+        mapaTarea2 = new HashMap<String, Integer>();
+        mapaHora = new HashMap<Integer, String>();
+
         tareasBD = new ArrayList<Work>();
 
         tareasBD = OBTENDATOS();
@@ -40,6 +53,13 @@ public class AllWorksActivity extends AppCompatActivity {
         //LLAMADA A LOS METODOS DE LLENADO
         LLENARARREGLO();
         LLENARMAPA();
+
+        ///////
+        LLENARARREGLO2();
+        LLENARMAPA2();
+        LLENARHORA();
+        ///////
+
 
         //CASTEO
         ListWorks = findViewById(R.id.ListWorks);
@@ -53,7 +73,6 @@ public class AllWorksActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), WorksActivity.class);
                 intent.putExtra("ID_TAREA", mapaTarea.get(nombre).toString());
                 startActivity(intent);
-
             }
         });
 
@@ -69,16 +88,17 @@ public class AllWorksActivity extends AppCompatActivity {
 
         //VARIABLES
         int id;
-        String name, date, desc, impor;
+        String name, date, desc, impor, hor;
 
         while (Datos.moveToNext()){
             id = Datos.getInt(Datos.getColumnIndex("id_tarea"));
             name = Datos.getString(Datos.getColumnIndex("nombre"));
             date = Datos.getString(Datos.getColumnIndex("fecha"));
+            hor = Datos.getString(Datos.getColumnIndex("hora"));
             desc = Datos.getString(Datos.getColumnIndex("descripcion"));
             impor = Datos.getString(Datos.getColumnIndex("importancia"));
 
-            Work work = new Work(id, name, date, desc, impor);
+            Work work = new Work(id, name, date, hor, desc, impor);
             tareas.add(work);
         }
         return tareas;
@@ -100,6 +120,37 @@ public class AllWorksActivity extends AppCompatActivity {
             llave = tareasBD.get(i).getNombre();
             valor = tareasBD.get(i).getIdWork();
             mapaTarea.put(llave, valor);
+        }
+    }
+
+    //LLENA UN ARREGLO PARA
+    public void LLENARARREGLO2(){
+        for(int i=0; i<tareasBD.size(); i++){
+            fecha_Tareas.add(tareasBD.get(i).getFecha());
+        }
+    }
+
+    //LLENA UN MAPA CON EL NOMBRE DE LA TAREA Y SU ID PARA ENVIARLO A WORKS ACTIVITY
+    public void LLENARMAPA2(){
+        String llave;
+        int valor;
+
+        for(int i=0; i<tareasBD.size(); i++){
+            llave = tareasBD.get(i).getFecha();
+            valor = tareasBD.get(i).getIdWork();
+            mapaTarea2.put(llave, valor);
+        }
+    }
+
+    //LLENA UN MAPA CON EL NOMBRE DE LA TAREA Y SU ID PARA ENVIARLO A WORKS ACTIVITY
+    public void LLENARHORA(){
+        int llave;
+        String valor;
+
+        for(int i=0; i<tareasBD.size(); i++){
+            valor = tareasBD.get(i).getHora();
+            llave = tareasBD.get(i).getIdWork();
+            mapaHora.put(llave, valor);
         }
     }
 

@@ -10,9 +10,14 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class Utils {
 
-    public static void setAlarm(int i, Long timestamp, Context ctx) {
+    public static void setAlarm(int i, String identidad, String nombre, Long timestamp, Context ctx) {
         AlarmManager alarmManager = (AlarmManager) ctx.getSystemService(ALARM_SERVICE);
         Intent alarmIntent = new Intent(ctx, AlarmReceiver.class);
+
+        alarmIntent.putExtra("IDENTIDAD", identidad);
+        alarmIntent.putExtra("NOMBRE", nombre);
+
+
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getBroadcast(ctx, i, alarmIntent, PendingIntent.FLAG_ONE_SHOT);
         alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));

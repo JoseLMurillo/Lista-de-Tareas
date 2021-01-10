@@ -5,15 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
+import android.widget.Toast;
 import com.example.listadetareas.Notificacion.AlarmaPrueba;
 
+import com.example.listadetareas.Notificacion.TareasNotificacion;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    TareasNotificacion tareasNotificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(this, TareasNotificacion.class));
 
     }
 
@@ -34,7 +41,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Pomodoro.class);
         startActivity(intent);
     }
-
-
-
 }
