@@ -44,7 +44,6 @@ public class NewWorksActivity extends AppCompatActivity {
         etDescripcion = findViewById(R.id.etDescripcion);
         SpImportancia = (Spinner) findViewById(R.id.SpImportancia); //Que la base de datos se actualice segun el orden de importancia
 
-
         //PRUEBA
     }
 

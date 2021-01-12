@@ -11,22 +11,15 @@ import androidx.core.content.ContextCompat;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    String identidad;
-    String nombre;
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        identidad = intent.getStringExtra("IDENTIDAD");
-        nombre = intent.getStringExtra("NOMBRE");
-
+        //CREA UN INTENT CON EL CONTEXTO QUE SIGUE SIENDO TAREASNOTIFICACION
         Intent service1 = new Intent(context, NotificationService.class);
 
-        service1.putExtra("Identidad", identidad);
-        service1.putExtra("Nombre", nombre);
-
+        //VUELVE A HACER ALGO RARO QUE NO ENTIENDO
         service1.setData((Uri.parse("custom://" + System.currentTimeMillis())));
         ContextCompat.startForegroundService(context, service1 );
-        //Log.d("WALKIRIA", " ALARM RECEIVED!!!");
+        Log.d("LISTA DE TAREAS", " Recordatorio");
     }
 }

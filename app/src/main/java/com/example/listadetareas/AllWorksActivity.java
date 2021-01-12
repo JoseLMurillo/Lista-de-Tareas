@@ -31,7 +31,6 @@ public class AllWorksActivity extends AppCompatActivity {
     ArrayList<Work> tareasBD;
     Map<String, Integer> mapaTarea, mapaTarea2;
     Map<Integer, String>mapaHora;
-    Calendar hoy = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

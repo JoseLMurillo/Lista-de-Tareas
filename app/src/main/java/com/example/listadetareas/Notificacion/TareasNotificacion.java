@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -39,7 +40,7 @@ public class TareasNotificacion extends Service {
     ArrayList<Work> tareasBD;
     ArrayList<String> fecha_Tareas;
     DataBaseWorks dataBaseWorks;
-    Boolean ContadorMinuto;
+    Boolean ContadorMinuto = true;
     ///////////////////
 
     @Override
@@ -58,7 +59,6 @@ public class TareasNotificacion extends Service {
         mapaTarea = new HashMap<Integer, String>();
         mapaHora = new HashMap<Integer, String>();
         mapaNombre = new HashMap<Integer, String>();
-        ContadorMinuto = true;
 
         tareasBD = OBTENDATOS();
         LLENARMAPA();
@@ -67,7 +67,6 @@ public class TareasNotificacion extends Service {
         LLENARMAPAFECHA();
         LLENARHORA();
 
-        UnMINUTO();
         ejecutarTarea();
 
         return START_NOT_STICKY;
@@ -88,7 +87,7 @@ public class TareasNotificacion extends Service {
     //ciclo infinito para ejecutar algo //PRUEBA
     public void ejecutarTarea() {
 
-            final int TIEMPO = 1000;   //NO ENTIENDO PORQUE MATA AL SERVICIO SI EL HANDLER ES MAYOR A 3 SEGUNDOS  //POBAR USAR OTRO POSTDELEAY DENTRO DE ESTE PARA VER SI EL TIEMPO SE ALARGA
+            final int TIEMPO = 20000;   //NO ENTIENDO PORQUE MATA AL SERVICIO SI EL HANDLER ES MAYOR A 3 SEGUNDOS  //POBAR USAR OTRO POSTDELEAY DENTRO DE ESTE PARA VER SI EL TIEMPO SE ALARGA
             handler.postDelayed(new Runnable() {
                 public void run() {
 
@@ -98,7 +97,6 @@ public class TareasNotificacion extends Service {
                         NOTIFICACIONESDIARIO();
                         createNotificationChannel();
                     }
-
                     handler.postDelayed(this, TIEMPO);
                 }
 
@@ -108,16 +106,16 @@ public class TareasNotificacion extends Service {
     //ciclo infinito para ejecutar algo //PRUEBA
     public void UnMINUTO() {
 
-        final int TIEMPO = 60000;   //NO ENTIENDO PORQUE MATA AL SERVICIO SI EL HANDLER ES MAYOR A 3 SEGUNDOS  //POBAR USAR OTRO POSTDELEAY DENTRO DE ESTE PARA VER SI EL TIEMPO SE ALARGA
+        final int TIEMPO2 = 60000;   //NO ENTIENDO PORQUE MATA AL SERVICIO SI EL HANDLER ES MAYOR A 3 SEGUNDOS  //POBAR USAR OTRO POSTDELEAY DENTRO DE ESTE PARA VER SI EL TIEMPO SE ALARGA
         handler.postDelayed(new Runnable() {
             public void run() {
 
                 ContadorMinuto = true;
 
-                handler.postDelayed(this, TIEMPO);
+                handler.postDelayed(this, TIEMPO2);
             }
 
-        }, TIEMPO);
+        }, TIEMPO2);
 
     }
 
@@ -159,29 +157,23 @@ public class TareasNotificacion extends Service {
                 HORA = Integer.parseInt(mapaHora.get(entry.getKey()).substring(0,2));
                 MINUTO = Integer.parseInt(mapaHora.get(entry.getKey()).substring(3));
 
-                if(Integer.parseInt(formattedHour.substring(0,2)) < HORA){
-
-                    hoy.set(Calendar.HOUR_OF_DAY, HORA);
-                    hoy.set(Calendar.MINUTE, MINUTO);
-                    hoy.set(Calendar.SECOND, 0);
-
-                    //Utils.setAlarm(entry.getKey(), entry.getKey().toString(), mapaNombre.get(entry.getKey()), hoy.getTimeInMillis(), TareasNotificacion.this);
-                    //Utils.setAlarm(entry.getKey(), hoy.getTimeInMillis(), TareasNotificacion.this);
-                }
 
                 if(Integer.parseInt(formattedHour.substring(0,2)) == HORA){
 
-                    if(Integer.parseInt(formattedHour.substring(3)) == MINUTO && Integer.parseInt(formattedSec) == 10){
+                    //Toast.makeText(this, "ID:"+entry.getKey()+" Comparo Hora: "+formattedHour.substring(0,2)+" - "+HORA, Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(this, formattedSec, Toast.LENGTH_LONG).show();
+                    if(Integer.parseInt(formattedHour.substring(3)) == MINUTO && ContadorMinuto == true){
 
                         hoy.set(Calendar.HOUR_OF_DAY, HORA);
                         hoy.set(Calendar.MINUTE, MINUTO);
                         hoy.set(Calendar.SECOND, 0);
 
-                        createNotification(entry.getKey(), mapaNombre.get(entry.getKey()), "Recondatorio");
-                        //Utils.setAlarm(entry.getKey(), entry.getKey().toString(), mapaNombre.get(entry.getKey()), hoy.getTimeInMillis(), TareasNotificacion.this);
+                        Toast.makeText(this, "ID:"+entry.getKey()+" Comparo Minuto: "+formattedHour.substring(3)+" - "+MINUTO, Toast.LENGTH_LONG).show();
 
+                        Utils.setAlarm(entry.getKey(), hoy.getTimeInMillis(), TareasNotificacion.this);
+                        ContadorMinuto = false;
+                        UnMINUTO();
+                        //Utils.setAlarm(entry.getKey(), entry.getKey().toString(), mapaNombre.get(entry.getKey()), hoy.getTimeInMillis(), TareasNotificacion.this);
                     }
                 }
             }

@@ -76,6 +76,19 @@
         android:padding="5dp">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/Procesar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:onClick="NEWORKACTIVITY"
+            android:scaleX="1"
+            android:scaleY="1"
+            app:backgroundTint="@color/AzulSucio"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
